@@ -1,0 +1,85 @@
+﻿<Window x:Class="wpf5.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpf5.View"
+        xmlns:vm="clr-namespace:wpf5.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="266.825">
+    <Window.Resources>
+        <vm:CovidVM x:Key="vm"/>
+    </Window.Resources>
+    <StackPanel Margin="5" DataContext="{StaticResource vm}">
+        <StackPanel>
+            <Border Background="DarkBlue">
+                <Label HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="White">General</Label>
+            </Border>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">New Confirmed:</Label>
+                <Label Content="{Binding Global.NewConfirmed}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">Total Confirmed:</Label>
+                <Label Content="{Binding Global.TotalConfirmed}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">New Deaths:</Label>
+                <Label Content="{Binding Global.NewDeaths}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">Total Deaths:</Label>
+                <Label Content="{Binding Global.TotalDeaths}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">New Recovered:</Label>
+                <Label Content="{Binding Global.NewRecovered}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">Total Recovered:</Label>
+                <Label Content="{Binding Global.TotalRecovered}"></Label>
+            </StackPanel>
+            <Button Command="{Binding getCommand}" Width="100" Margin="5">Get info</Button>
+        </StackPanel>
+        <ListBox Height="300"  ItemsSource="{Binding Countries}" SelectedItem="{Binding SelectedCountry}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Country}" Width="175"/>
+                        <TextBlock Text="{Binding CountryCode}" Width="25"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">Selected country:</Label>
+                <Label Content="{Binding SelectedCountry.Country}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">New Confirmed:</Label>
+                <Label Content="{Binding SelectedCountry.NewConfirmed}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">Total Confirmed:</Label>
+                <Label Content="{Binding SelectedCountry.TotalConfirmed}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">New Deaths:</Label>
+                <Label Content="{Binding SelectedCountry.NewDeaths}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">Total Deaths:</Label>
+                <Label Content="{Binding SelectedCountry.TotalDeaths}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">New Recovered:</Label>
+                <Label Content="{Binding SelectedCountry.NewRecovered}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label MinWidth="100">Total Recovered:</Label>
+                <Label Content="{Binding SelectedCountry.TotalRecovered}"></Label>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>
